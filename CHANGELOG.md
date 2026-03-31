@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 (2026-03-31)
+
+- Rename setup command from `/memclaw:memclaw-setup` to `/memclaw:setup`
+- Update install flow: marketplace add, install, setup
+- Update repository to `caura-ai/memclaw-plugin`
+- Update all references across README, plugin.json, SKILL.md, and command
+
 ## 1.1.0 (2026-03-31)
 
 - Fix: Remove unsupported bash-style fallback syntax from `.mcp.json`

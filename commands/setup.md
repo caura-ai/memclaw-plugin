@@ -126,6 +126,6 @@ If `$RESULT` is `FAILED`, tell the user the credential write failed, show them t
 
 Do NOT print the full API key in the chat — show only the first 8 characters followed by `...` so the user can identify it.
 
-7. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:memclaw-setup` with their email to refresh the credentials.
+7. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:setup` with their email to refresh the credentials.
 
-8. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:memclaw-setup` if they need to re-run it.
+8. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:setup` if they need to re-run it.

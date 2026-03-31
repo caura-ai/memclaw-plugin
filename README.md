@@ -2,37 +2,38 @@
 
 Persistent AI memory for Claude Code. Remember decisions, context, and knowledge across sessions.
 
-## Quick Start
+## Install
 
-1. Install the plugin (once it's in the marketplace):
-
-```
-/plugin install memclaw
-```
-
-Or install directly from this repo:
+### 1. Add the plugin source
 
 ```
-/plugin marketplace add memclaw-repo https://github.com/caura-ai/memclaw-claude-code-plugin
-/plugin install memclaw@memclaw-repo
+/plugin marketplace add memclaw https://github.com/caura-ai/memclaw-plugin
 ```
 
-2. When prompted for the API key during install, you can leave it blank — the setup command will configure it for you.
-
-3. Register and get your API key:
+### 2. Install
 
 ```
-/memclaw:memclaw-setup your@email.com
+/plugin install memclaw@memclaw
 ```
 
-The setup command registers your account, retrieves an API key, and stores it in your local credentials automatically.
+When prompted for the API key, leave it blank — the setup command configures it for you.
 
-4. Verify: run `/mcp` to confirm the memclaw server is connected.
+### 3. Setup
+
+```
+/memclaw:setup your@email.com
+```
+
+Registers your account, retrieves an API key, and stores it locally.
+
+### 4. Verify
+
+Run `/mcp` to confirm the memclaw server is connected.
 
 ## What This Plugin Provides
 
 - **MCP server connection** — Connects to MemClaw's Streamable HTTP MCP server for persistent memory storage and retrieval
-- **`/memclaw:memclaw-setup` command** — Register with just an email to get an API key
+- **`/memclaw:setup` command** — Register with just an email to get an API key
 - **Memory skill** — Teaches Claude Code when to proactively store and retrieve memories (architectural decisions, debugging gotchas, project conventions, etc.)
 
 ## Manual Install
@@ -52,10 +53,6 @@ jq -n --arg tid 'your-at-email-com' --arg em 'your@email.com' '{"tenant_id": $ti
     -H 'Content-Type: application/json' \
     -d @-
 ```
-
-## Available MCP Tools
-
-Connect to the MCP server and run `/mcp` to see available tools. Tools are discoverable once the API key is configured and the server is connected.
 
 ## Documentation
 
