@@ -1,0 +1,28 @@
+{
+  "name": "memclaw",
+  "owner": {
+    "name": "Caura",
+    "email": "eng@caura.ai"
+  },
+  "metadata": {
+    "description": "Persistent AI memory for Claude Code"
+  },
+  "plugins": [
+    {
+      "name": "memclaw",
+      "source": "./",
+      "description": "Persistent AI memory for Claude Code via MemClaw. Store and retrieve context across sessions, projects, and teams.",
+      "version": "1.2.0",
+      "author": {
+        "name": "Caura",
+        "email": "eng@caura.ai"
+      },
+      "homepage": "https://memclaw.net",
+      "repository": "https://github.com/caura-ai/memclaw-plugin",
+      "license": "MIT",
+      "keywords": ["memory", "context", "persistence", "rag", "knowledge"],
+      "category": "productivity",
+      "strict": false
+    }
+  ]
+}
