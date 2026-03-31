@@ -1,32 +1,29 @@
-# memclaw-claude-code-plugin
+# memclaw-plugin
 
 Persistent AI memory for Claude Code. Remember decisions, context, and knowledge across sessions.
 
 ## Install
 
-### 1. Add the plugin source
+### 1. Install the plugin
 
-```
+```bash
+# Add source (one-time)
 /plugin marketplace add memclaw https://github.com/caura-ai/memclaw-plugin
-```
 
-### 2. Install
-
-```
+# Install
 /plugin install memclaw@memclaw
 ```
 
 When prompted for the API key, leave it blank — the setup command configures it for you.
 
-### 3. Setup
+### 2. Setup
 
-```
+```bash
+# Register and configure API key
 /memclaw:setup your@email.com
 ```
 
-Registers your account, retrieves an API key, and stores it locally.
-
-### 4. Verify
+### 3. Verify
 
 Run `/mcp` to confirm the memclaw server is connected.
 
