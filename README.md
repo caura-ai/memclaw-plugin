@@ -8,7 +8,7 @@ Persistent AI memory for Claude Code. Remember decisions, context, and knowledge
 
 ```bash
 # Add source (one-time)
-/plugin marketplace add memclaw https://github.com/caura-ai/memclaw-plugin
+/plugin marketplace add memclaw caura-ai/memclaw-plugin
 
 # Install
 /plugin install memclaw@memclaw
