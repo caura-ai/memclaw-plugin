@@ -38,7 +38,7 @@ Run `/mcp` to confirm the memclaw server is connected.
 If you prefer to configure the MCP server directly:
 
 ```bash
-claude mcp add --transport http memclaw https://memclaw.net/mcp/ -H "Authorization: Bearer YOUR_API_KEY"
+claude mcp add --transport http memclaw https://memclaw.dev/mcp/ -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 Get an API key by registering (requires `jq`):
@@ -46,14 +46,14 @@ Get an API key by registering (requires `jq`):
 ```bash
 jq -n --arg tid 'your-at-email-com' --arg em 'your@email.com' '{"tenant_id": $tid, "email": $em}' | \
   curl -sS --connect-timeout 10 --max-time 30 \
-    -X POST https://memclaw.net/api/register \
+    -X POST https://memclaw.dev/api/register \
     -H 'Content-Type: application/json' \
     -d @-
 ```
 
 ## Documentation
 
-[memclaw.net](https://memclaw.net)
+[memclaw.dev](https://memclaw.dev)
 
 ## License
 

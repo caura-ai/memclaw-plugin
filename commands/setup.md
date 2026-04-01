@@ -32,7 +32,7 @@ register() {
   local RAW
   RAW=$(jq -n --arg tid "$TENANT_ID" --arg em "$EMAIL" \
     '{"tenant_id": $tid, "email": $em}' | \
-    curl -sS -w '\n%{http_code}' -X POST https://memclaw.net/api/register \
+    curl -sS -w '\n%{http_code}' -X POST https://memclaw.dev/api/register \
       -H 'Content-Type: application/json' \
       --connect-timeout 10 --max-time 30 \
       -d @-)
@@ -65,7 +65,7 @@ BODY=$(echo "$OUTPUT" | tail -n +3)
 Replace `<email>` with the actual email address.
 
 4. **Handle errors:**
-   - **Transport errors:** If `CURL_EXIT` is non-zero, curl failed at the network level (DNS, TLS, timeout). Show the user the error and suggest checking their network or https://memclaw.net status. Do not proceed.
+   - **Transport errors:** If `CURL_EXIT` is non-zero, curl failed at the network level (DNS, TLS, timeout). Show the user the error and suggest checking their network or https://memclaw.dev status. Do not proceed.
    - **Tenant ID conflict (HTTP 409):** If the HTTP status is 409, or the body contains "already exists", "conflict", or "taken", generate a random suffix and retry using the same `register` function:
      ```bash
      for i in 1 2 3; do
@@ -79,7 +79,7 @@ Replace `<email>` with the actual email address.
        fi
      done
      ```
-     If all 3 retries fail, tell the user their email may already be registered and suggest they check https://memclaw.net.
+     If all 3 retries fail, tell the user their email may already be registered and suggest they check https://memclaw.dev.
    - **HTTP errors:** If the HTTP status code is not 200 or 201, tell the user the registration failed. Show both the HTTP status code and the response body. Suggest trying again later.
    - **Unexpected response:** If the body is not valid JSON or does not contain an `api_key` field, show the raw response body and ask the user to report the issue.
 

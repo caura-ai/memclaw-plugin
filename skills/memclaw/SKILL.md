@@ -30,7 +30,7 @@ Proactively retrieve memories when:
 
 - If the memclaw MCP server isn't connected, tell the user to run `/memclaw:setup`
 - If a tool call returns an authentication or 401 error, the API key may be missing or invalid — first suggest re-running `/memclaw:setup` with their email to refresh the credentials. If that doesn't help, direct them to `/plugin` > memclaw > configure to manually re-enter the key
-- If a tool call fails with a network error, suggest the user check https://memclaw.net for service status
+- If a tool call fails with a network error, suggest the user check https://memclaw.dev for service status
 
 ## Usage Notes
 

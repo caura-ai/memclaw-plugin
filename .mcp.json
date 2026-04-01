@@ -2,7 +2,7 @@
   "mcpServers": {
     "memclaw": {
       "type": "http",
-      "url": "https://memclaw.net/mcp/",
+      "url": "https://memclaw.dev/mcp/",
       "headers": {
         "Authorization": "Bearer ${user_config.MEMCLAW_API_KEY}"
       }

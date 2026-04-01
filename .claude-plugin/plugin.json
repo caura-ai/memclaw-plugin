@@ -6,7 +6,7 @@
     "name": "Caura",
     "url": "https://caura.ai"
   },
-  "homepage": "https://memclaw.net",
+  "homepage": "https://memclaw.dev",
   "repository": "https://github.com/caura-ai/memclaw-plugin",
   "license": "MIT",
   "keywords": ["memory", "context", "persistence", "rag", "knowledge"],
