@@ -12,7 +12,7 @@
       "name": "memclaw",
       "source": "./",
       "description": "Persistent AI memory for Claude Code via MemClaw. Store and retrieve context across sessions, projects, and teams.",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "author": {
         "name": "Caura",
         "email": "eng@caura.ai"
