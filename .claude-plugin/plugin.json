@@ -1,6 +1,6 @@
 {
   "name": "memclaw",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Persistent AI memory for Claude Code via MemClaw. Store and retrieve context across sessions, projects, and teams.",
   "author": {
     "name": "Caura",
@@ -9,7 +9,13 @@
   "homepage": "https://memclaw.dev",
   "repository": "https://github.com/caura-ai/memclaw-plugin",
   "license": "MIT",
-  "keywords": ["memory", "context", "persistence", "rag", "knowledge"],
+  "keywords": [
+    "memory",
+    "context",
+    "persistence",
+    "rag",
+    "knowledge"
+  ],
   "userConfig": {
     "MEMCLAW_API_KEY": {
       "title": "API Key",
