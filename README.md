@@ -38,7 +38,7 @@ Run `/mcp` to confirm the memclaw server is connected.
 If you prefer to configure the MCP server directly:
 
 ```bash
-claude mcp add --transport http memclaw https://memclaw.dev/mcp/ -H "Authorization: Bearer YOUR_API_KEY"
+claude mcp add -s user --transport http memclaw https://memclaw.dev/mcp/ -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 Get an API key by registering (requires `jq`):

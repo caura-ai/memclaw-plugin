@@ -126,6 +126,18 @@ If `$RESULT` is `FAILED`, tell the user the credential write failed, show them t
 
 Do NOT print the full API key in the chat — show only the first 8 characters followed by `...` so the user can identify it.
 
-7. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:setup` with their email to refresh the credentials.
+7. **Register the MCP server.** Add the memclaw MCP server so Claude Code can connect to it. This is idempotent — if it already exists, remove it first to ensure the URL and headers are current:
 
-8. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:setup` if they need to re-run it.
+```bash
+claude mcp remove memclaw -s user 2>/dev/null
+claude mcp add -s user --transport http memclaw "https://memclaw.dev/mcp/" -H "Authorization: Bearer $API_KEY"
+```
+
+If the `claude mcp add` command fails, show the error and tell the user to add it manually:
+```
+claude mcp add -s user --transport http memclaw "https://memclaw.dev/mcp/" -H "Authorization: Bearer <their-key>"
+```
+
+8. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:setup` with their email to refresh the credentials.
+
+9. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:setup` if they need to re-run it.
