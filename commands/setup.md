@@ -9,7 +9,7 @@ Set up MemClaw persistent memory for this Claude Code instance.
 
 ## Prerequisites
 
-This command requires `jq` for safe JSON construction and credential storage. Run this check first — if it fails, stop and tell the user to install `jq`:
+This command requires `jq` for safe JSON construction. Run this check first — if it fails, stop and tell the user to install `jq`:
 
 ```bash
 command -v jq >/dev/null 2>&1 || { echo "ERROR: jq is required. Install: brew install jq (macOS) or apt install jq (Linux)"; exit 1; }
@@ -97,29 +97,9 @@ if [ -z "$API_KEY" ] || [ "$API_KEY" = "null" ]; then
 fi
 ```
 
-6. **Store the API key as an environment variable.** Add `MEMCLAW_API_KEY` to the user's shell profile so Claude Code can resolve `${MEMCLAW_API_KEY}` in `.mcp.json`:
-
-```bash
-SHELL_RC="$HOME/.zshrc"
-if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
-  SHELL_RC="$HOME/.bashrc"
-fi
-
-# Remove any existing MEMCLAW_API_KEY export to avoid duplicates
-grep -v '^export MEMCLAW_API_KEY=' "$SHELL_RC" > "$SHELL_RC.tmp" 2>/dev/null && mv "$SHELL_RC.tmp" "$SHELL_RC"
-
-# Append the new export
-echo "export MEMCLAW_API_KEY=\"$API_KEY\"" >> "$SHELL_RC"
-
-# Export for current session
-export MEMCLAW_API_KEY="$API_KEY"
-```
-
-If the write fails, tell the user to manually add `export MEMCLAW_API_KEY="<their-key>"` to their shell profile.
+6. **Register the MCP server.** Add the memclaw MCP server so Claude Code can connect to it. The `claude mcp add -H` command stores the bearer token directly in the user-scoped MCP config (`~/.claude/.mcp.json`), so no shell profile or environment variable is needed. Remove any existing entry first to ensure the URL and headers are current:
 
 Do NOT print the full API key in the chat — show only the first 8 characters followed by `...` so the user can identify it.
-
-7. **Register the MCP server.** Add the memclaw MCP server so Claude Code can connect to it. This is idempotent — if it already exists, remove it first to ensure the URL and headers are current:
 
 ```bash
 claude mcp remove memclaw -s user 2>/dev/null
@@ -131,6 +111,6 @@ If the `claude mcp add` command fails, show the error and tell the user to add i
 claude mcp add -s user --transport http memclaw "https://memclaw.dev/mcp/" -H "Authorization: Bearer <their-key>"
 ```
 
-8. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:setup` with their email to refresh the credentials.
+7. **Verify the connection.** Tell the user to run `/mcp` to confirm the memclaw server shows as connected. If it doesn't connect, suggest re-running `/memclaw:setup` with their email to refresh the credentials.
 
-9. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:setup` if they need to re-run it.
+8. **Print a success message** with their tenant_id and plan (free). Remind them the command is `/memclaw:setup` if they need to re-run it.
