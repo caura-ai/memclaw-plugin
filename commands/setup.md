@@ -97,32 +97,25 @@ if [ -z "$API_KEY" ] || [ "$API_KEY" = "null" ]; then
 fi
 ```
 
-6. **Store the API key.** Write the API key to the credentials file. Create the directory with restrictive permissions and check for errors on both write branches:
+6. **Store the API key as an environment variable.** Add `MEMCLAW_API_KEY` to the user's shell profile so Claude Code can resolve `${MEMCLAW_API_KEY}` in `.mcp.json`:
 
 ```bash
-CREDS_FILE="$HOME/.claude/.credentials.json"
+SHELL_RC="$HOME/.zshrc"
+if [ -n "$BASH_VERSION" ] && [ -f "$HOME/.bashrc" ]; then
+  SHELL_RC="$HOME/.bashrc"
+fi
 
-RESULT=$(
-  umask 077
-  mkdir -p "$(dirname "$CREDS_FILE")"
-  if [ -f "$CREDS_FILE" ]; then
-    if jq --arg key "$API_KEY" '.pluginConfigs["memclaw"].MEMCLAW_API_KEY = $key' "$CREDS_FILE" > "$CREDS_FILE.tmp" 2>/dev/null; then
-      mv "$CREDS_FILE.tmp" "$CREDS_FILE" && echo "OK"
-    else
-      rm -f "$CREDS_FILE.tmp"
-      echo "FAILED"
-    fi
-  else
-    if jq -n --arg key "$API_KEY" '{"pluginConfigs": {"memclaw": {"MEMCLAW_API_KEY": $key}}}' > "$CREDS_FILE" 2>/dev/null; then
-      echo "OK"
-    else
-      echo "FAILED"
-    fi
-  fi
-)
+# Remove any existing MEMCLAW_API_KEY export to avoid duplicates
+grep -v '^export MEMCLAW_API_KEY=' "$SHELL_RC" > "$SHELL_RC.tmp" 2>/dev/null && mv "$SHELL_RC.tmp" "$SHELL_RC"
+
+# Append the new export
+echo "export MEMCLAW_API_KEY=\"$API_KEY\"" >> "$SHELL_RC"
+
+# Export for current session
+export MEMCLAW_API_KEY="$API_KEY"
 ```
 
-If `$RESULT` is `FAILED`, tell the user the credential write failed, show them the path `~/.claude/.credentials.json`, and suggest they delete it and re-run the setup command.
+If the write fails, tell the user to manually add `export MEMCLAW_API_KEY="<their-key>"` to their shell profile.
 
 Do NOT print the full API key in the chat — show only the first 8 characters followed by `...` so the user can identify it.
 
